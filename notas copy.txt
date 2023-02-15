@@ -1,0 +1,34 @@
+"Computacao I" 6.0 5.0 20191
+"Cálculo Difer e Integral I" 2.4 6.0 20191
+"Engenharia e Meio Ambiente" 7.0 2.0 20191
+"Física Experimental I" 4.3 1.0 20191
+"Física I - a" 3.1 4.0 20191
+"Circuitos Logicos" 0.0 5.0 20192
+"Computacao II" 1.7 5.0 20192
+"Cálculo Difer e Integral I" 4.6 6.0 20192
+"Física Experimental I" 5.1 1.0 20192
+"Física I - a" 3.5 4.0 20192
+"Sistemas Projetivos" 2.2 4.0 20192
+"Circuitos Logicos" 6.6 5.0 20201
+"Computacao II" 8.0 5.0 20201
+"Cálculo Difer e Integral I" 7.7 6.0 20201
+"Física I - a" 7.6 4.0 20201
+"Quimica EE" 6.0 4.0 20201
+"Álgebra Linear II" 9.0 4.0 20201
+"Cálculo Diferen e Integral II" 4.9 4.0 20202
+"Física Experimental II" 6.7 1.0 20202
+"Física II - a" 10.0 4.0 20202
+"Intro ao Aprendiz de Máquina" 9.2 4.0 20202
+"Algoritmos e Estrut.de Dados" 5.0 4.0 20211
+"Computacao Grafica" 8.3 4.0 20211
+"Cálculo Diferen e Integral II" 9.4 4.0 20211
+"Física Experimental III" 6.2 1.0 20211
+"Linguagens de Programacao" 8.4 5.0 20211
+"Cálculo Diferen e Integral III" 8.0 4.0 20212
+"Fisica III - A" 6.0 4.0 20212
+"Metodos Mat em Eng Eletronica" 6.8 4.0 20212
+"Sistemas Lineares I" 5.8 5.0 20212
+"Sistemas Projetivos" 7.7 4.0 20212
+
+
+
