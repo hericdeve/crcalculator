@@ -10,7 +10,7 @@ CRCALOBS = subject.o grade.o groupby.o cr.o
 CRCAL = crcalculator
 
 .cpp.o:
-	$(CC) $(CFLAGS) -c $<2)
+	$(CC) $(CFLAGS) -c $<
 
 
 all:$(CRCAL)
