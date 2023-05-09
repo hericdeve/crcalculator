@@ -25,11 +25,12 @@ const vector<Subject>  Grade::getSubjects(){
 Grade & Grade::operator+=(Subject &subject)
 {
     int found = 0;
+    char *in;
 
     if (!this->subjects.size())
     {
-        this->subjects.push_back(subject);
-        
+        this->subjects.push_back(subject);  
+        cout << "Disciplina adicionada." << endl;
     }
 
     else
@@ -42,7 +43,22 @@ Grade & Grade::operator+=(Subject &subject)
                 found = 1;   
             }
         }
-        this->subjects.push_back(subject);     
+        if (found != 0){
+            cout << "Subject já catalogada." << endl;
+            cout << "Adicionar novamente?" << endl;
+            cin >> in;
+            if (in == "y")
+                {
+                    this->subjects.push_back(subject);
+                    cout << "Disciplina adicionada." << endl;
+                }
+            else
+                cout << "Entrada Inválida." << endl;
+        }
+        else
+            cout << "Disciplina adicionada." << endl;
+            
+
     }
    
     return *this;

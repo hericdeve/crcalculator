@@ -3,9 +3,9 @@
 #include <sstream>
 #include <vector>
 #include <fstream>
-#include<stdio.h>
-#include<ctype.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
 #include <getopt.h>
 #include "grade.h"
 #include "subject.h"
@@ -42,7 +42,7 @@ using namespace std;
 
 int
 main(int argc, char **argv){
-    char *shortOpt = "s::S::a::A::d::D::hH";
+    const char *shortOpt = "s::S::a::A::d::D::hH";
     int opt, command;
     opterr = 0;  
     fstream entrada;
@@ -170,8 +170,9 @@ main(int argc, char **argv){
             case 's':
             case 'S':
                 cout<<grade;
-            case 3:
-            case 0:
+            case 'a':
+            case 'A':
+                
                 break;
 
             default:
