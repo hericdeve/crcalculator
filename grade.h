@@ -1,33 +1,26 @@
 #ifndef GRADE_H
 #define GRADE_H
 
-
 #include <iostream>
-#include <string>
 #include <vector>
+#include <map>
 #include "subject.h"
-
-
-
-using namespace std;
-
 
 class Grade
 {
     public:
        Grade();
        Grade &operator+=(Subject &);
-       void showGrade();
-       const vector<Subject> getSubjects();
+        Grade &operator-=(const Subject &);
+        std::vector<Subject>& getSubjectsForEditing();
+       const std::vector<Subject>& getSubjects() const;
+       double calculateCRA() const;
+       double calculateCRAHighestGrade() const;
+       std::map<long, double> calculateCRAPerPeriod() const;
+       friend std::ostream &operator<<(std::ostream &, const Grade &);
 
     private:
-        vector <Subject> subjects;
-        
-    bool operator==(Subject &);
-    friend ostream &operator<<(ostream &, Grade &);
-
+        std::vector<Subject> subjects;
 };
-
-
 
 #endif

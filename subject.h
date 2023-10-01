@@ -1,36 +1,28 @@
 #ifndef SUBJECT_H
 #define SUBJECT_H
 
-
-#include <iostream>
 #include <string>
 
-using namespace std;
-
-
-class Subject
-{
+class Subject {
     public:
         Subject();
-        Subject(string, double, double, double);
-        const string getNome();
-        double getNota();
-        const double getPeso();
-        long getPeriodo();
-        void setNome(string);
-        void setNota(double);
-        void setPeso(double);
-        void setPeriodo(long);
+        Subject(std::string nomeIn, double notaIn, double pesoIn, long periodoIn);
+
+        std::string getNome() const;
+        double getNota() const;
+        double getPeso() const;
+        long getPeriodo() const;
+
+        void setNome(std::string nomeIn);
+        void setNota(double notaIn);
+        void setPeso(double pesoIn);
+        void setPeriodo(long periodoIn);
 
     private:
-        string nome;
+        std::string nome;
         double nota;
         double peso;
         long periodo;
-
 };
-
-
-
 
 #endif

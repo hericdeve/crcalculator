@@ -1,53 +1,40 @@
 #include <iostream>
-#include <vector>
 #include <string>
 #include "subject.h"
 
-using namespace std;
+Subject::Subject() : nome(""), nota(0.0), peso(0.0), periodo(0) {}
 
-Subject::Subject(){}
+Subject::Subject(std::string nomeIn, double notaIn, double pesoIn, long periodoIn) 
+    : nome(nomeIn), nota(notaIn), peso(pesoIn), periodo(periodoIn) {}
 
-Subject::Subject(string nomeIn, double notaIn, double pesoIn, double periodoIn){}
-
-
-
-const string Subject:: getNome()
-{
+std::string Subject::getNome() const {
     return this->nome;
 }
 
-
-double Subject::getNota()
-{
+double Subject::getNota() const {
     return this->nota;
 }
 
-const double Subject::getPeso()
-{
+double Subject::getPeso() const {
     return this->peso;
 }
 
-long Subject::getPeriodo()
-{
+long Subject::getPeriodo() const {
     return this->periodo;
 }
 
-void Subject:: setNome(string nomeIn)
-{
+void Subject::setNome(std::string nomeIn) {
     this->nome = nomeIn;
 }
 
-void Subject::setNota(double notaIn)
-{
+void Subject::setNota(double notaIn) {
     this->nota = notaIn;
 }
 
-void Subject::setPeso(double pesoIn)
-{
+void Subject::setPeso(double pesoIn) {
     this->peso = pesoIn;
 }
 
-void Subject::setPeriodo(long periodoIn)
-{
+void Subject::setPeriodo(long periodoIn) {
     this->periodo = periodoIn;
 }
