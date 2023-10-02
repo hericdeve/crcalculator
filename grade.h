@@ -16,6 +16,7 @@ class Grade
        const std::vector<Subject>& getSubjects() const;
        double calculateCRA() const;
        double calculateCRAHighestGrade() const;
+       std::vector<Subject*> searchSubject(const std::string& name);
        std::map<long, double> calculateCRAPerPeriod() const;
        friend std::ostream &operator<<(std::ostream &, const Grade &);
 

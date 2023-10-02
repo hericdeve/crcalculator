@@ -1,6 +1,6 @@
 CC = g++
 LD = $(CC)
-CFLAGS = -std=c++17 -Wall -Wextra
+CFLAGS = -std=c++20 -Wall -Wextra -I/usr/include/rapidfuzz/
 LFLAGS = -Wall 
 
 SRC = $(wildcard *.cpp)

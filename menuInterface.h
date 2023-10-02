@@ -1,6 +1,7 @@
 #ifndef MENUINTERFACE_H
 #define MENUINTERFACE_H
 
+#include <string>
 #include "grade.h"
 
 class MenuInterface {
@@ -9,6 +10,8 @@ public:
     void run();
 private:
     Grade grade;
+    std::string filePath;
+
     void showMenu();
     void showCRA();
     void showCRAHighestGrade();

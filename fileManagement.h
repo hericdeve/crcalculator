@@ -4,8 +4,10 @@
 #include <string>
 #include "grade.h"
 
-std::string trim(const std::string& str);
-Grade readCSV(const std::string& filePath);
+std::string trim(const std::string&);
+bool compareSubjects(const Subject&, const Subject&);
+Grade readCSV(const std::string&);
+void writeCSV(const std::string&, const Grade&); 
 
 
 #endif // FILEMANAGEMENT_H

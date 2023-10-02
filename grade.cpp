@@ -4,9 +4,12 @@
 #include <iomanip>
 #include <algorithm>
 #include <unordered_map>
+#include <climits> 
 #include <map>
+#include <rapidfuzz/rapidfuzz_all.hpp>
 #include "subject.h"
 #include "grade.h"
+
 
 using namespace std;
 
@@ -77,6 +80,43 @@ std::ostream& operator<<(std::ostream &os, const Grade &grade) {
 
     return os;
 }
+
+
+// Function to convert a string to lowercase
+std::string toLower(const std::string& str) {
+    std::string lowerStr = str;
+    std::transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
+    return lowerStr;
+}
+
+std::vector<Subject*> Grade::searchSubject(const std::string& name) {
+    std::vector<Subject*> matches;
+    double maxRatio = 0.0;
+    std::string lowerName = toLower(name);
+    std::map<Subject*, double> subjectScores;  // To store each subject and its match score
+
+    // Calculate match scores for all subjects
+    for (Subject& subject : this->subjects) {
+        std::string lowerSubjectName = toLower(subject.getNome());
+        double ratio = rapidfuzz::fuzz::ratio(lowerName, lowerSubjectName);
+        subjectScores[&subject] = ratio;
+        if (ratio > maxRatio) {
+            maxRatio = ratio;
+        }
+    }
+
+    // Find all subjects with the highest score or at least 90% of the highest score
+    for (const auto& [subject, score] : subjectScores) {
+        if (score == maxRatio || score >= 0.9 * maxRatio) {
+            matches.push_back(subject);
+        }
+    }
+
+    return matches;
+}
+
+
+
 
 
 
