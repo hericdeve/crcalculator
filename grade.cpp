@@ -37,7 +37,7 @@ Grade& Grade::operator+=(Subject &subject) {
     }
     try {
         this->subjects.emplace_back(subject);
-        std::cout << "Discipline added.\n";
+        // std::cout << "Discipline added.\n";
     } catch (const std::exception& e) {
         std::cerr << "Error adding subject: " << e.what() << '\n';
     }

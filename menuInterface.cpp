@@ -13,10 +13,10 @@ MenuInterface::MenuInterface() {
     this->filePath = home + "/Documents/CRmanager/notas.csv";
     std::ifstream file(filePath);
     if (!file.good()) {
-        std::cout << "\033[1;31m"  // Set color to red
-                  << "Could not find notas.csv in the default directory.\n"
-                  << "Please enter the path to notas.csv: "
-                  << "\033[0m";  // Reset color
+        std::cout << "\033[1;31m"  // Definir a cor para vermelho
+                  << "Não foi possível encontrar notas.csv no diretório padrão.\n"
+                  << "Por favor, insira o caminho para notas.csv: "
+                  << "\033[0m";  // Resetar a cor
         std::cin >> filePath;
     }
     grade = readCSV(filePath);
@@ -30,9 +30,9 @@ void MenuInterface::run() {
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "\033[1;31m"  // Set color to red
-                      << "Invalid input. Please enter a number.\n"
-                      << "\033[0m";  // Reset color
+            std::cout << "\033[1;31m"  // Definir a cor para vermelho
+                      << "Entrada inválida. Por favor, insira um número.\n"
+                      << "\033[0m";  // Resetar a cor
             continue;
         }
         switch (choice) {
@@ -45,64 +45,60 @@ void MenuInterface::run() {
             case 7: editSubject(); break;
             case 0: break;
             default: 
-                std::cout << "\033[1;31m"  // Set color to red
-                          << "Invalid option. Please choose a number from the menu.\n"
-                          << "\033[0m";  // Reset color
+                std::cout << "\033[1;31m"  // Definir a cor para vermelho
+                          << "Opção inválida. Por favor, escolha um número do menu.\n"
+                          << "\033[0m";  // Resetar a cor
         }
     } while (choice != 0);
 }
 
 void MenuInterface::showMenu() {
-    std::cout << "\n\033[1;36m"  // Set color to cyan
-              << "1) Show CRA\n"
-              << "2) Show CRA (Highest Grades Only)\n"
-              << "3) Show CRA Per Period\n"
-              << "4) Show Grade\n"
-              << "5) Add Subject\n"
-              << "6) Delete Subject\n"
-              << "7) Edit Subject\n"
-              << "0) Exit\n"
-              << "\033[0m\n";  // Reset color
+    std::cout << "\n\033[1;36m"  // Definir a cor para ciano
+              << "1) Mostrar CRA\n"
+              << "2) Mostrar CRA (Apenas Notas Mais Altas)\n"
+              << "3) Mostrar CRA Por Período\n"
+              << "4) Mostrar Notas\n"
+              << "5) Adicionar Matéria\n"
+              << "6) Deletar Matéria\n"
+              << "7) Editar Matéria\n"
+              << "0) Sair\n"
+              << "\033[0m\n";  // Resetar a cor
 }
-
-
 
 void MenuInterface::showCRA() {
     double cra = grade.calculateCRA();
-    std::cout << "\033[1;33m"  // Set color to yellow
-              << "The current CRA is: " << std::fixed << std::setprecision(4) << cra
-              << "\033[0m"  // Reset color
+    std::cout << "\033[1;33m"  // Definir a cor para amarelo
+              << "O CRA atual é: " << std::fixed << std::setprecision(4) << cra
+              << "\033[0m"  // Resetar a cor
               << "\n";
 }
 
 void MenuInterface::showCRAHighestGrade() {
     double cra = grade.calculateCRAHighestGrade();
-    std::cout << "\033[1;33m"  // Set color to yellow
-              << "The current CRA (highest grades only) is: " << std::fixed << std::setprecision(4) << cra
-              << "\033[0m"  // Reset color
+    std::cout << "\033[1;33m"  // Definir a cor para amarelo
+              << "O CRA atual (apenas notas mais altas) é: " << std::fixed << std::setprecision(4) << cra
+              << "\033[0m"  // Resetar a cor
               << "\n";
 }
 
 void MenuInterface::showCRAPerPeriod() {
     std::map<long, double> craPerPeriod = grade.calculateCRAPerPeriod();
 
-    std::cout << "\033[1;36m"  // Set color to cyan
-              << std::left << std::setw(10) << "Period" 
+    std::cout << "\033[1;36m"  // Definir a cor para ciano
+              << std::left << std::setw(10) << "Período" 
               << std::setw(10) << "CRA" 
-              << "\033[0m"  // Reset color
+              << "\033[0m"  // Resetar a cor
               << "\n\n";
 
     for (const auto& pair : craPerPeriod) {
-        std::cout << "\033[1;32m"  // Set color to green
+        std::cout << "\033[1;32m"  // Definir a cor para verde
                   << std::left << std::setw(10) << pair.first 
-                  << "\033[1;33m"  // Set color to yellow
+                  << "\033[1;33m"  // Definir a cor para amarelo
                   << std::fixed << std::setw(10) << std::setprecision(4)  << pair.second
-                  << "\033[0m"  // Reset color
+                  << "\033[0m"  // Resetar a cor
                   << "\n";
     }
 }
-
-
 
 void MenuInterface::showGrade() {
     std::cout << grade;
@@ -113,28 +109,28 @@ void MenuInterface::addSubject() {
     double nota, peso;
     long periodo;
 
-    std::cout << "\033[1;32m"  // Set color to green
-              << "Enter subject name: ";
-    std::cin.ignore();  // Ignore any leftover newline character in the input buffer
+    std::cout << "\033[1;32m"  // Definir a cor para verde
+              << "Insira o nome da matéria: ";
+    std::cin.ignore();  // Ignorar qualquer caractere de nova linha restante no buffer de entrada
     std::getline(std::cin, name);
 
-    std::cout << "Enter grade: ";
+    std::cout << "Insira a nota: ";
     while (!(std::cin >> nota)) {
-        std::cout << "Invalid input. Please enter a number for the grade: ";
+        std::cout << "Entrada inválida. Por favor, insira um número para a nota: ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    std::cout << "Enter weight: ";
+    std::cout << "Insira o peso: ";
     while (!(std::cin >> peso)) {
-        std::cout << "Invalid input. Please enter a number for the weight: ";
+        std::cout << "Entrada inválida. Por favor, insira um número para o peso: ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    std::cout << "Enter period: ";
+    std::cout << "Insira o período: ";
     while (!(std::cin >> periodo)) {
-        std::cout << "Invalid input. Please enter a number for the period: ";
+        std::cout << "Entrada inválida. Por favor, insira um número para o período: ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
@@ -142,185 +138,184 @@ void MenuInterface::addSubject() {
     Subject newSubject(name, nota, peso, periodo);
     grade += newSubject;
 
-    // Save the updated Grade object to the .csv file
+    // Salvar o objeto Grade atualizado no arquivo .csv
     writeCSV(filePath, grade);
 
-    std::cout << "Subject added successfully.\n"
-              << "\033[0m";  // Reset color
+    std::cout << "Matéria adicionada com sucesso.\n"
+              << "\033[0m";  // Resetar a cor
 }
 
 
 void MenuInterface::deleteSubject() {
     std::string name;
 
-    std::cout << "\033[1;32m"  // Set color to green
-              << "Enter subject name: ";
-    std::cin.ignore();  // Ignore any leftover newline character in the input buffer
+    std::cout << "\033[1;32m"  // Definir a cor para verde
+              << "Insira o nome da matéria: ";
+    std::cin.ignore();  // Ignorar qualquer caractere de nova linha restante no buffer de entrada
     std::getline(std::cin, name);
 
     std::vector<Subject*> matches = grade.searchSubject(name);
     if (matches.empty()) {
-        std::cout << "No matching subjects found.\n";
+        std::cout << "Nenhuma matéria correspondente encontrada.\n";
         return;
     }
 
-    std::cout << "Found " << matches.size() << " matching subjects:\n";
+    std::cout << "Encontradas " << matches.size() << " matérias correspondentes:\n";
     for (size_t i = 0; i < matches.size(); ++i) {
         std::cout << i + 1 << ". " << matches[i]->getNome() 
-                  << " (Period: " << matches[i]->getPeriodo() << ")\n";  // Display the period
+                  << " (Período: " << matches[i]->getPeriodo() << ")\n";  // Exibir o período
     }
     
     size_t choice;
     
     if (matches.size() > 1) {
-        std::cout << "Enter the number of the subject you want to delete: ";
+        std::cout << "Insira o número da matéria que você deseja deletar: ";
         std::cin >> choice;
         
         if (choice <= 0 || choice > matches.size()) {
-            std::cout << "Invalid choice.\n";
+            std::cout << "Escolha inválida.\n";
             return;
         }
         
         char confirm;
-        std::cout << "Are you sure you want to delete this subject? (y/n): ";
+        std::cout << "Você tem certeza que deseja deletar esta matéria? (s/n): ";
         std::cin >> confirm;
         
-        if (confirm == 'y' || confirm == 'Y') {
+        if (confirm == 's' || confirm == 'S') {
             grade -= *matches[choice - 1];
-            writeCSV(filePath, grade);  // Save the updated Grade object
-            std::cout << "Subject deleted successfully.\n"
-                      << "\033[0m";  // Reset color
+            writeCSV(filePath, grade);  // Salvar o objeto Grade atualizado
+            std::cout << "Matéria deletada com sucesso.\n"
+                      << "\033[0m";  // Resetar a cor
         } else {
-            std::cout << "Deletion cancelled.\n"
-                      << "\033[0m";  // Reset color
+            std::cout << "Deleção cancelada.\n"
+                      << "\033[0m";  // Resetar a cor
         }
                   
         return;
         
      } else if (matches.size() == 1) {
          char confirm;
-         std::cout << "Are you sure you want to delete this subject? (y/n): ";
+         std::cout << "Você tem certeza que deseja deletar esta matéria? (s/n): ";
          std::cin >> confirm;
          
-         if (confirm == 'y' || confirm == 'Y') {
+         if (confirm == 's' || confirm == 'S') {
              grade -= *matches[0];
-             writeCSV(filePath, grade);  // Save the updated Grade object
-             std::cout << "Subject deleted successfully.\n"
-                       << "\033[0m";  // Reset color
+             writeCSV(filePath, grade);  // Salvar o objeto Grade atualizado
+             std::cout << "Matéria deletada com sucesso.\n"
+                       << "\033[0m";  // Resetar a cor
          } else {
-             std::cout << "Deletion cancelled.\n"
-                       << "\033[0m";  // Reset color
+             std::cout << "Deleção cancelada.\n"
+                       << "\033[0m";  // Resetar a cor
          }
                    
          return;
      }
 }
-
 
 void MenuInterface::editSubject() {
     std::string name;
 
-    std::cout << "\033[1;32m"  // Set color to green
-              << "Enter subject name: ";
-    std::cin.ignore();  // Ignore any leftover newline character in the input buffer
+    std::cout << "\033[1;32m"  // Definir a cor para verde
+              << "Insira o nome da matéria: ";
+    std::cin.ignore();  // Ignorar qualquer caractere de nova linha restante no buffer de entrada
     std::getline(std::cin, name);
 
     std::vector<Subject*> matches = grade.searchSubject(name);
     if (matches.empty()) {
-        std::cout << "No matching subjects found.\n";
+        std::cout << "Nenhuma matéria correspondente encontrada.\n";
         return;
     }
 
-    std::cout << "Found " << matches.size() << " matching subjects:\n";
+    std::cout << "Encontradas " << matches.size() << " matérias correspondentes:\n";
     for (size_t i = 0; i < matches.size(); ++i) {
         std::cout << i + 1 << ". " << matches[i]->getNome() 
-                  << " (Period: " << matches[i]->getPeriodo() << ")\n";  // Display the period
+                  << " (Período: " << matches[i]->getPeriodo() << ")\n";  // Exibir o período
     }
     
     size_t choice;
     
     if (matches.size() > 1) {
-        std::cout << "Enter the number of the subject you want to edit: ";
+        std::cout << "Insira o número da matéria que você deseja editar: ";
         std::cin >> choice;
         
         if (choice <= 0 || choice > matches.size()) {
-            std::cout << "Invalid choice.\n";
+            std::cout << "Escolha inválida.\n";
             return;
         }
         
         char confirm;
-        std::cout << "Are you sure you want to edit this subject? (y/n): ";
+        std::cout << "Você tem certeza que deseja editar esta matéria? (s/n): ";
         std::cin >> confirm;
         
-        if (confirm == 'y' || confirm == 'Y') {
-            // Get new details for the subject
+        if (confirm == 's' || confirm == 'S') {
+            // Obter novos detalhes para a matéria
             std::string newName;
             long newPeriod;
-            // ... (add more variables as needed)
+            // ... (adicionar mais variáveis conforme necessário)
 
-            std::cout << "Enter new name for the subject: ";
-            std::cin.ignore();  // Ignore any leftover newline character in the input buffer
+            std::cout << "Insira o novo nome para a matéria: ";
+            std::cin.ignore();  // Ignorar qualquer caractere de nova linha restante no buffer de entrada
             std::getline(std::cin, newName);
 
-            std::cout << "Enter new period for the subject: ";
+            std::cout << "Insira o novo período para a matéria: ";
             std::cin >> newPeriod;
 
+            // ... (obter mais detalhes conforme necessário)
 
-            // ... (get more details as needed)
-
-            // Update the subject details
+            // Atualizar os detalhes da matéria
             matches[choice - 1]->setNome(newName);
             matches[choice - 1]->setPeriodo(newPeriod);
-            // ... (update more details as needed)
+            // ... (atualizar mais detalhes conforme necessário)
 
-            writeCSV(filePath, grade);  // Save the updated Grade object
+            writeCSV(filePath, grade);  // Salvar o objeto Grade atualizado
 
-            std::cout << "Subject edited successfully.\n"
-                      << "\033[0m";  // Reset color
+            std::cout << "Matéria editada com sucesso.\n"
+                      << "\033[0m";  // Resetar a cor
         } else {
-            std::cout << "Edit cancelled.\n"
-                      << "\033[0m";  // Reset color
+            std::cout << "Edição cancelada.\n"
+                      << "\033[0m";  // Resetar a cor
         }
                   
         return;
         
      } else if (matches.size() == 1) {
          char confirm;
-         std::cout << "Are you sure you want to edit this subject? (y/n): ";
+         std::cout << "Você tem certeza que deseja editar esta matéria? (s/n): ";
          std::cin >> confirm;
          
-         if (confirm == 'y' || confirm == 'Y') {
-             // Get new details for the subject
+         if (confirm == 's' || confirm == 'S') {
+             // Obter novos detalhes para a matéria
              std::string newName;
              long newPeriod;
-             // ... (add more variables as needed)
+             // ... (adicionar mais variáveis conforme necessário)
 
-             std::cout << "Enter new name for the subject: ";
-             std::cin.ignore();  // Ignore any leftover newline character in the input buffer
+             std::cout << "Insira o novo nome para a matéria: ";
+             std::cin.ignore();  // Ignorar qualquer caractere de nova linha restante no buffer de entrada
              std::getline(std::cin, newName);
 
-             std::cout << "Enter new period for the subject: ";
+             std::cout << "Insira o novo período para a matéria: ";
              std::cin >> newPeriod;
 
-             // ... (get more details as needed)
+             // ... (obter mais detalhes conforme necessário)
 
-             // Update the subject details
+             // Atualizar os detalhes da matéria
              matches[0]->setNome(newName);
              matches[0]->setPeriodo(newPeriod);
-             // ... (update more details as needed)
+             // ... (atualizar mais detalhes conforme necessário)
 
-             writeCSV(filePath, grade);  // Save the updated Grade object
+             writeCSV(filePath, grade);  // Salvar o objeto Grade atualizado
 
-             std::cout << "Subject edited successfully.\n"
-                       << "\033[0m";  // Reset color
+             std::cout << "Matéria editada com sucesso.\n"
+                       << "\033[0m";  // Resetar a cor
          } else {
-             std::cout << "Edit cancelled.\n"
-                       << "\033[0m";  // Reset color
+             std::cout << "Edição cancelada.\n"
+                       << "\033[0m";  // Resetar a cor
          }
                    
          return;
      }
 }
+
 
 
 

@@ -93,7 +93,7 @@ void writeCSV(const std::string& filePath, Grade& grade) {
     }
 
     // Get the subjects from the Grade object
-    std::vector<Subject>& subjects = grade.getSubjectsForEditing();
+    std::vector<Subject> & subjects = grade.getSubjectsForEditing();
 
     // Sort the subjects by period and then by name
     std::sort(subjects.begin(), subjects.end(), compareSubjects);
