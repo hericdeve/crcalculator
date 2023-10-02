@@ -1,41 +1,40 @@
+# Gerenciador de Notas
 
-# Grade Manager
+O Gerenciador de Notas é uma ferramenta para gerenciar notas. Ele permite que você adicione, exclua e edite matérias, calcule o Coeficiente de Rendimento Acumulado (CRA) e muito mais.
 
-Grade Manager is a tool for managing grades. It allows you to add, delete, and edit subjects, calculate the Cumulative Grade Point Average (CRA), and more.
+## Recursos
 
-## Features
+- Ler notas de um arquivo CSV
+- Adicionar, excluir e editar matérias
+- Calcular o CRA
+- Calcular o CRA usando apenas as notas mais altas para cada matéria
+- Calcular o CRA para cada período
+- Exibir o CRA e os detalhes das notas em uma tabela
+- Gravar as notas atualizadas de volta no arquivo CSV
 
-- Read grades from a CSV file
-- Add, delete, and edit subjects
-- Calculate the CRA
-- Calculate the CRA using only the highest grades for each subject
-- Calculate the CRA for each period
-- Display the CRA and grade details in a table
-- Write the updated grades back to the CSV file
+## Uso
 
-## Usage
+1. Execute o programa.
+2. Se `notas.csv` não for encontrado no diretório padrão, insira o caminho para `notas.csv`.
+3. Use o menu para gerenciar as notas:
+   - Digite `1` para mostrar o CRA.
+   - Digite `2` para mostrar o CRA usando apenas as notas mais altas para cada matéria.
+   - Digite `3` para mostrar o CRA para cada período.
+   - Digite `4` para mostrar os detalhes das notas.
+   - Digite `5` para adicionar uma matéria.
+   - Digite `6` para excluir uma matéria.
+   - Digite `7` para editar uma matéria.
+   - Digite `0` para sair.
 
-1. Run the program.
-2. If `notas.csv` is not found in the default directory, enter the path to `notas.csv`.
-3. Use the menu to manage grades:
-   - Enter `1` to show the CRA.
-   - Enter `2` to show the CRA using only the highest grades for each subject.
-   - Enter `3` to show the CRA for each period.
-   - Enter `4` to show grade details.
-   - Enter `5` to add a subject.
-   - Enter `6` to delete a subject.
-   - Enter `7` to edit a subject.
-   - Enter `0` to exit.
+## Requisitos
 
-## Requirements
+- Compilador C++
+- Arquivo CSV com notas
 
-- C++ compiler
-- CSV file with grades
+## Contribuindo
 
-## Contributing
+Solicitações pull são bem-vindas. Para alterações importantes, por favor, abra uma issue primeiro para discutir o que você gostaria de mudar.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
+## Licença
 
 MIT
