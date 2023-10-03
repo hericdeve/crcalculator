@@ -7,6 +7,7 @@
 
 std::string trim(const std::string&);
 bool compareSubjects(const Subject&, const Subject&);
+Grade readOrCreateCSV(const std::string&, const std::string&);
 Grade readCSV(const std::string&);
 void writeCSV(const std::string&, Grade&); 
 

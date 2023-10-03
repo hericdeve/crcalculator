@@ -10,16 +10,9 @@
 
 MenuInterface::MenuInterface() {
     std::string home = getenv("HOME");
-    this->filePath = home + "/Documents/CRmanager/notas.csv";
-    std::ifstream file(filePath);
-    if (!file.good()) {
-        std::cout << "\033[1;31m"  // Definir a cor para vermelho
-                  << "Não foi possível encontrar notas.csv no diretório padrão.\n"
-                  << "Por favor, insira o caminho para notas.csv: "
-                  << "\033[0m";  // Resetar a cor
-        std::cin >> filePath;
-    }
-    grade = readCSV(filePath);
+    std::string defaultDir = home + "/Documents/CRmanager";
+    grade = readOrCreateCSV(defaultDir, "notas.csv");
+    this->filePath = defaultDir + "/notas.csv";
 }
 
 void MenuInterface::run() {
@@ -66,6 +59,14 @@ void MenuInterface::showMenu() {
 }
 
 void MenuInterface::showCRA() {
+    if (grade.getSubjects().empty()) {
+        std::cout << "\033[1;31m"  // Definir a cor para vermelho
+                  << "Nenhuma matéria foi adicionada."
+                  << "\033[0m"  // Resetar a cor
+                  << "\n";
+        return;
+    }
+
     double cra = grade.calculateCRA();
     std::cout << "\033[1;33m"  // Definir a cor para amarelo
               << "O CRA atual é: " << std::fixed << std::setprecision(4) << cra
@@ -74,6 +75,14 @@ void MenuInterface::showCRA() {
 }
 
 void MenuInterface::showCRAHighestGrade() {
+    if (grade.getSubjects().empty()) {
+        std::cout << "\033[1;31m"  // Definir a cor para vermelho
+                  << "Nenhuma matéria foi adicionada."
+                  << "\033[0m"  // Resetar a cor
+                  << "\n";
+        return;
+    }
+
     double cra = grade.calculateCRAHighestGrade();
     std::cout << "\033[1;33m"  // Definir a cor para amarelo
               << "O CRA atual (apenas notas mais altas) é: " << std::fixed << std::setprecision(4) << cra
@@ -82,6 +91,14 @@ void MenuInterface::showCRAHighestGrade() {
 }
 
 void MenuInterface::showCRAPerPeriod() {
+    if (grade.getSubjects().empty()) {
+        std::cout << "\033[1;31m"  // Definir a cor para vermelho
+                  << "Nenhuma matéria foi adicionada."
+                  << "\033[0m"  // Resetar a cor
+                  << "\n";
+        return;
+    }
+
     std::map<long, double> craPerPeriod = grade.calculateCRAPerPeriod();
 
     std::cout << "\033[1;36m"  // Definir a cor para ciano
@@ -99,6 +116,7 @@ void MenuInterface::showCRAPerPeriod() {
                   << "\n";
     }
 }
+
 
 void MenuInterface::showGrade() {
     std::cout << grade;

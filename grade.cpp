@@ -139,6 +139,10 @@ double Grade::calculateCRAHighestGrade() const {
     std::unordered_map<std::string, double> weights;
     double totalWeight = 0.0;
 
+    if (subjects.empty()) {
+        throw std::runtime_error("Nenhuma matéria foi adicionada");
+    }
+
     for (const Subject& subject : subjects) {
         std::string name = subject.getNome();
         double grade = subject.getNota();

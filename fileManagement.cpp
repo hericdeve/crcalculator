@@ -4,9 +4,66 @@
 #include <cctype>
 #include <string>
 #include <algorithm>
+#include <sys/stat.h> 
 #include "fileManagement.h"
 #include "grade.h"
 #include "subject.h"
+
+
+// Função para verificar se um diretório existe
+bool directoryExists(const std::string& dirPath) {
+    struct stat info;
+
+    if (stat(dirPath.c_str(), &info) != 0) {
+        return false;
+    } else if (info.st_mode & S_IFDIR) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Função para criar um diretório
+void createDirectory(const std::string& dirPath) {
+    const int dir_err = mkdir(dirPath.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    if (-1 == dir_err) {
+        std::cerr << "Erro ao criar o diretório: " << dirPath << '\n';
+        exit(1);
+    }
+}
+
+Grade readOrCreateCSV(const std::string& defaultDir, const std::string& fileName) {
+    // Verifique se o diretório padrão existe
+    if (!directoryExists(defaultDir)) {
+        // Crie o diretório se ele não existir
+        createDirectory(defaultDir);
+    }
+
+    std::string filePath = defaultDir + "/" + fileName;
+    std::ifstream file(filePath);
+
+    // Verifique se o arquivo foi aberto com sucesso
+    if (!file.is_open()) {
+        // O arquivo não foi encontrado, então crie um novo
+        std::ofstream newFile(filePath);
+
+        if (!newFile.is_open()) {
+            std::cerr << "Falha ao criar o arquivo: " << filePath << '\n';
+            return Grade();  // Retorna um objeto Grade vazio
+        }
+
+        // Escreva o cabeçalho do arquivo CSV
+        // newFile << "Nome,Nota,Peso,Periodo\n";
+
+        newFile.close();
+        std::cout << "Um novo arquivo .csv foi criado em: " << filePath << '\n';
+    } else {
+        file.close();
+    }
+
+    return readCSV(filePath);
+}
+
 
 std::string trim(const std::string& str) {
     std::string copy = str;
