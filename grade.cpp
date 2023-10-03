@@ -7,7 +7,6 @@
 #include <climits> 
 #include <map>
 #include <rapidfuzz/rapidfuzz_all.hpp>
-#include "subject.h"
 #include "grade.h"
 
 
@@ -31,7 +30,7 @@ std::vector<Subject>& Grade::getSubjectsForEditing() {
 Grade& Grade::operator+=(Subject &subject) {
     for (const Subject& existingSubject : this->subjects) {
         if (subject == existingSubject) {
-            std::cout << "Subject with the same name and period already cataloged.\n";
+            std::cout << "Disciplina com o mesmo nome e período já catalogada.\n";
             return *this;
         }
     }
@@ -39,7 +38,7 @@ Grade& Grade::operator+=(Subject &subject) {
         this->subjects.emplace_back(subject);
         // std::cout << "Discipline added.\n";
     } catch (const std::exception& e) {
-        std::cerr << "Error adding subject: " << e.what() << '\n';
+        std::cerr << "Erro ao adicionar disciplina: " << e.what() << '\n';
     }
     return *this;
 }
@@ -116,10 +115,6 @@ std::vector<Subject*> Grade::searchSubject(const std::string& name) {
 }
 
 
-
-
-
-
 double Grade::calculateCRA() const {
     double totalGrade = 0.0;
     double totalWeight = 0.0;
@@ -129,10 +124,10 @@ double Grade::calculateCRA() const {
             totalWeight += subject.getPeso();
         }
         if (totalWeight == 0) {
-            throw std::invalid_argument("Total weight cannot be zero");
+            throw std::invalid_argument("Peso total não pode ser zero");
         }
     } catch (const std::exception& e) {
-        std::cerr << "Error calculating CRA: " << e.what() << '\n';
+        std::cerr << "Erro ao calcular CRA: " << e.what() << '\n';
         return 0.0;
     }
     return totalGrade / totalWeight;
@@ -163,7 +158,7 @@ double Grade::calculateCRAHighestGrade() const {
     }
 
     if (totalWeight == 0) {
-        throw std::invalid_argument("Total weight cannot be zero");
+        throw std::invalid_argument("Peso total não pode ser zero");
     }
 
     return totalGrade / totalWeight;
@@ -192,4 +187,5 @@ std::map<long, double> Grade::calculateCRAPerPeriod() const {
 
     return craPerPeriod;
 }
+
 
