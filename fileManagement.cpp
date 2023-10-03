@@ -28,9 +28,10 @@ Grade readCSV(const std::string& filePath) {
 
     // Check if the file was successfully opened
     if (!file.is_open()) {
-        std::cerr << "Failed to open file: " << filePath << '\n';
-        return Grade();  // Return an empty Grade object
+        std::cerr << "Falha ao abrir o arquivo: " << filePath << '\n';
+        return Grade();
     }
+
 
     std::string line;
     Grade grade;
@@ -61,23 +62,23 @@ Grade readCSV(const std::string& filePath) {
             double peso = std::stod(pesoStr);
             long periodo = std::stol(periodoStr);
 
-            // Validate the data
             if (nota < 0 || nota > 10) {
-                throw std::invalid_argument("nota must be between 0 and 10");
+                throw std::invalid_argument("nota deve estar entre 0 e 10");
             }
             if (peso < 0) {
-                throw std::invalid_argument("peso must be positive");
+                throw std::invalid_argument("peso deve ser positivo");
             }
             if (periodo <= 0) {
-                throw std::invalid_argument("periodo must be positive");
+                throw std::invalid_argument("periodo deve ser positivo");
             }
 
             Subject newSubject(name, nota, peso, periodo);
             grade += newSubject;
         } catch (const std::invalid_argument& ia) {
-            std::cerr << "Invalid data in CSV file: " << ia.what() << '\n';
+            std::cerr << "Dados inválidos no arquivo CSV: " << ia.what() << '\n';
         }
     }
+
 
     return grade;
 }
@@ -88,9 +89,10 @@ void writeCSV(const std::string& filePath, Grade& grade) {
 
     // Check if the file was successfully opened
     if (!file.is_open()) {
-        std::cerr << "Failed to open file: " << filePath << '\n';
+        std::cerr << "Falha ao abrir o arquivo: " << filePath << '\n';
         return;
     }
+
 
     // Get the subjects from the Grade object
     std::vector<Subject> & subjects = grade.getSubjectsForEditing();
@@ -106,8 +108,7 @@ void writeCSV(const std::string& filePath, Grade& grade) {
                  << subject.getPeso() << ","
                  << subject.getPeriodo() << "\n";
         } catch (const std::exception& e) {
-            std::cerr << "Error writing to file: " << e.what() << '\n';
-            // Close the file and return after encountering an error
+            std::cerr << "Erro ao escrever no arquivo: " << e.what() << '\n';
             file.close();
             return;
         }
