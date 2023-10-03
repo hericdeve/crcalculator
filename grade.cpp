@@ -7,6 +7,7 @@
 #include <climits> 
 #include <map>
 #include <rapidfuzz/rapidfuzz_all.hpp>
+#include "subject.h"
 #include "grade.h"
 
 
