@@ -1,5 +1,5 @@
 pkgname=crcalculator
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="A tool for managing grades"
 arch=('i686' 'x86_64')
@@ -7,7 +7,7 @@ url="https://github.com/hericdeve/crcalculator.git"
 license=('GPL')
 depends=('gcc-libs')
 makedepends=('gcc' 'git' 'cmake')
-source=("git+$url")
+source=("git+$url#branch=candidate")
 md5sums=('SKIP')
 
 build() {
