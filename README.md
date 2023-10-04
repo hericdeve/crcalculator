@@ -1,6 +1,6 @@
-# Gerenciador de Notas
+# Cr Calculator
 
-O Gerenciador de Notas é uma ferramenta para gerenciar notas. Ele permite que você adicione, exclua e edite matérias, calcule o Coeficiente de Rendimento Acumulado (CRA) e muito mais.
+O Cr Calculator é uma ferramenta para gerenciar notas. Ele permite que você adicione, exclua e edite matérias, calcule o Coeficiente de Rendimento Acumulado (CRA) e muito mais.
 
 ## Recursos
 
