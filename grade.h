@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <string>
 #include "subject.h"
 
 class Grade
@@ -19,9 +20,12 @@ class Grade
        std::vector<Subject*> searchSubject(const std::string& name);
        std::map<long, double> calculateCRAPerPeriod() const;
        friend std::ostream &operator<<(std::ostream &, const Grade &);
+       std::string getFilePath();
+       void setFilePath(const std::string &);
 
     private:
         std::vector<Subject> subjects;
+        std::string filePath;
 };
 
 #endif

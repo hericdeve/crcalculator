@@ -4,6 +4,7 @@
 #include <string>
 #include "grade.h"
 #include "subject.h"
+#include "fileManagement.h"
 
 std::string trim(const std::string&);
 bool compareSubjects(const Subject&, const Subject&);

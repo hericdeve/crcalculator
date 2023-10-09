@@ -81,6 +81,13 @@ std::ostream& operator<<(std::ostream &os, const Grade &grade) {
     return os;
 }
 
+std::string Grade::getFilePath(){
+    return filePath;
+}
+
+void Grade::setFilePath(const std::string &path){
+    filePath = path;
+}
 
 // Function to convert a string to lowercase
 std::string toLower(const std::string& str) {

@@ -9,7 +9,7 @@ boost_dep = dependency('boost')
 rapidfuzz_dep = dependency('rapidfuzz')
 
 
-sources = files('fileManagement.cpp', 'grade.cpp', 'menuInterface.cpp', 'subject.cpp', 'main.cpp')
+sources = files('fileManagement.cpp', 'grade.cpp', 'resources.cpp','menuInterface.cpp', 'subject.cpp', 'main.cpp')
 
 # Add executable and install it
 executable('crcalculator', sources,

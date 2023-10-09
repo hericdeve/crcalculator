@@ -6,20 +6,20 @@
 
 class MenuInterface {
 public:
-    MenuInterface();
+    MenuInterface(Grade &grade);
     void run();
 private:
-    Grade grade;
-    std::string filePath;
+    Grade *grade;
+    // std::string filePath;
 
     void showMenu();
-    void showCRA();
-    void showCRAHighestGrade();
-    void showCRAPerPeriod();
-    void showGrade();
-    void addSubject();
-    void deleteSubject();
-    void editSubject();
+    // void showCRA();
+    // void showCRAHighestGrade();
+    // void showCRAPerPeriod();
+    // void showGrade();
+    // void addSubject();
+    // void deleteSubject();
+    // void editSubject();
 };
 
 #endif // MENUINTERFACE_H
